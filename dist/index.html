@@ -2,15 +2,50 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Git Away</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Webpack Starter Kit</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
 </head>
 <body>
-  <img src="./images/turing-logo.png" alt="turing logo">
-  
+  <header>
+    <h1>Git Away</h1>
+    <h2>Welcome, Travler</h2>
+  </header>
+  <main>
+    <section id="leftside">
+      <aside class="travel-form" id="travel-form">
+        <h3>Make Travel Plans</h3>
+        <form class="js-form" id="form">
+          <label for="departure-date">Select Departure Date</label>
+          <input type="date" name="departure-date" class="js-departure-date" id="departure-date" min="2022-03-01"required>
+          <label for="duration">Select Duration (days)</label>
+          <input type="number" name="duration" class="js-duration" id="duration" minLength="1" min="1" required>
+          <label for="total-travelers">Total Travelers</label>
+          <input type="number" name="total-travelers" class="js-total-travelers" id="total-travelers" minlength="1" min="1" required>
+          <label for="destination">Select Destination</label>
+          <select name="destination" class="js-destination" id="destination"  required></select>
+          <button name="button" class="js-quote-button" id="quote-button">Get Travel Quote</button>
+          <p class="hidden" id="quote"></p>
+          <button name="button" class="js-request-button hidden" id="request-button">Request Travel</button>
+        </form>
+      </aside>
+      <aside class="travel-total" id="travel-total">
+        <h3>Traveler's Total Travel</h3>
+        <h4>Total Travel Spend</h4>
+      </aside>
+    </section>
+    <div id="buttons-and-cards-container">
+      <section id="trips-button-container">
+        <button name="button" class="js-all-travel-button" id="all-travel-button">All Travel</button>
+        <button name="button" class="js-approved-travel-button" id="approved-travel-button">Approved Travel</button>
+        <button name="button" class="js-pending-travel-button" id="pending-travel-button">Pending Travel</button>
+      </section>
+      <section class="js-all-trips">
+        <p>fjdkaslfjdaskl</p>
+      </section>
+    </div>
+  </main>
   <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
   <script src="bundle.js"></script>
-
 </body>
 </html>
