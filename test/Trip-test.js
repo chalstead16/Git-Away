@@ -21,4 +21,12 @@ describe('Trip', () => {
   it('should be a function', () => {
     expect(Trip).to.be.a('function');
   })
+
+  it('should be an instance of Trip', () => {
+    expect(trip1).to.be.an.instanceof(Trip);
+  })
+
+  it('should have an id', () => {
+    expect(trip1.id).to.equal(1)
+  })
 });
