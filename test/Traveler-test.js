@@ -30,4 +30,8 @@ describe('Traveler', () => {
     expect(traveler2.id).to.equal(2);
   })
 
+  it('should have a name', () => {
+    expect(traveler3.name).to.equal("Sibby Dawidowitsch");
+  })
+
 });
