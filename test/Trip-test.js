@@ -27,14 +27,18 @@ describe('Trip', () => {
   })
 
   it('should have an id', () => {
-    expect(trip1.id).to.equal(1)
+    expect(trip1.id).to.equal(1);
   })
 
   it('should have a userID', () => {
-    expect(trip2.userID).to.equal(35)
+    expect(trip2.userID).to.equal(35);
   })
 
   it('should have a destinationID', () => {
-    expect(trip2.destinationID).to.equal(25)
+    expect(trip2.destinationID).to.equal(25);
+  })
+
+  it('should have the total travelers', () => {
+    expect(trip2.travelers).to.equal(5);
   })
 });
