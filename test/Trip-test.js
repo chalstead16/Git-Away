@@ -29,4 +29,8 @@ describe('Trip', () => {
   it('should have an id', () => {
     expect(trip1.id).to.equal(1)
   })
+
+  it('should have a userID', () => {
+    expect(trip2.userID).to.equal(35)
+  })
 });
