@@ -45,4 +45,8 @@ describe('Trip', () => {
   it('should have a date', () => {
     expect(trip3.date).to.equal("2022/05/22");
   })
+
+  it('should have a duration', () => {
+    expect(trip3.duration).to.equal(17);
+  })
 });
