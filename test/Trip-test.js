@@ -53,4 +53,8 @@ describe('Trip', () => {
   it('should have a status', () => {
     expect(trip4.status).to.equal("approved");
   })
+
+  it('should have suggested activities', () => {
+    expect(trip4.suggestedActivities).to.deep.equal([]);
+  })
 });
