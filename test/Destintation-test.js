@@ -28,4 +28,8 @@ describe('Destination', () => {
   it('should have an id', () => {
     expect(destination1.id).to.equal(1);
   })
+
+  it('should have a destination', () => {
+    expect(destination1.destination).to.equal("Lima, Peru");
+  })
 });
