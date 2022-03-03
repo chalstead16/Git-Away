@@ -34,4 +34,7 @@ describe('Traveler', () => {
     expect(traveler3.name).to.equal("Sibby Dawidowitsch");
   })
 
+  it('should have a traveler type', () => {
+    expect(traveler4.travelerType).to.equal("photographer");
+  })
 });
