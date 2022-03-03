@@ -49,4 +49,8 @@ describe('Trip', () => {
   it('should have a duration', () => {
     expect(trip3.duration).to.equal(17);
   })
+
+  it('should have a status', () => {
+    expect(trip4.status).to.equal("approved");
+  })
 });
