@@ -24,4 +24,8 @@ describe('Destination', () => {
   it('should be an instance of Destination', () => {
     expect(destination1).to.be.an.instanceof(Destination);
   })
+
+  it('should have an id', () => {
+    expect(destination1.id).to.equal(1);
+  })
 });
