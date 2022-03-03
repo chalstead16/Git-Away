@@ -33,4 +33,8 @@ describe('Trip', () => {
   it('should have a userID', () => {
     expect(trip2.userID).to.equal(35)
   })
+
+  it('should have a destinationID', () => {
+    expect(trip2.destinationID).to.equal(25)
+  })
 });
