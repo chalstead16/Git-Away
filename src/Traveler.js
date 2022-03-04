@@ -31,8 +31,22 @@ class Traveler {
     let currentYearApprovedTrips = this.trips.filter((trip) => {
       return trip.date.includes(currentYear) && (trip.status === 'approved');
     });
-    
+
     return currentYearApprovedTrips;
+  }
+
+  calculateTotalSpendForCurrentYear = () => {
+    let approvedTrips = this.getApprovedTripsforCurrentYear();
+    let totalTravelCost = 0;
+
+    let total = approvedTrips.forEach((trip) => {
+      totalSpend += (trip.destination.estimatedLodgingCostPerDay * trip.duration)
+      totalSpend =+ (trip.destination.estimatedFlightCostPerPerson * trip.duration)
+    })
+
+    let totalWithFee = totalTravelCost * .1
+
+  return totalWithFee;
   }
 }
 
