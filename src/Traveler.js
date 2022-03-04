@@ -13,6 +13,16 @@ class Traveler {
       }
     });
   }
+
+  getTravelerDestinations = (destinations) => {
+    this.trips.forEach((trip) => {
+      if (trip.destinationID === destinations.id) {
+        trip.destination = destinations.find((destination) => {
+          return destination.id === trip.destinationID
+        })
+      }
+    }
+  }
 }
 
 export default Traveler;
