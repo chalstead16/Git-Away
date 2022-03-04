@@ -37,4 +37,8 @@ describe('Traveler', () => {
   it('should have a traveler type', () => {
     expect(traveler4.travelerType).to.equal("photographer");
   })
+
+  it('should hold traveler\'s trips', () => {
+    expect(traveler4.trips).to.deep.equal([]);
+  })
 });
