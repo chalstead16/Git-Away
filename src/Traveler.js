@@ -20,8 +20,19 @@ class Traveler {
         if (trip.destinationID === location.id) {
           trip.destination = location;
         }
-      })
-    })
+      });
+    });
+  }
+
+  getApprovedTripsForCurrentYear = () => {
+    let today = new Date();
+    let currentYear = new Date(today).getFullYear();
+
+    let currentYearApprovedTrips = this.trips.filter((trip) => {
+      return trip.date.includes(currentYear) && (trip.status === 'approved');
+    });
+    
+    return currentYearApprovedTrips;
   }
 }
 

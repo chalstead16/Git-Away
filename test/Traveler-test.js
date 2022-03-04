@@ -43,15 +43,21 @@ describe('Traveler', () => {
   })
 
   it('should hold traveler\'s trips', () => {
-    traveler1.getTravelerTrips(testData.trips)
+    traveler1.getTravelerTrips(testData.trips);
     expect(traveler1.trips).to.deep.equal([testData.trips[0], testData.trips[4]])
   })
 
   it('should add traveler desitnations to their trips', () => {
-    traveler1.getTravelerTrips(testData.trips)
-    traveler1.getTravelerDestinations(testData.destinations)
-    console.log(traveler1.trips)
-    expect(traveler1.trips[1].destination).to.deep.equal(testData.destinations[2])
+    traveler1.getTravelerTrips(testData.trips);
+    traveler1.getTravelerDestinations(testData.destinations);
+    expect(traveler1.trips[1].destination).to.deep.equal(testData.destinations[2]);
+  })
+
+  it('should get all approved trips for current year', () => {
+    traveler1.getTravelerTrips(testData.trips);
+    traveler1.getTravelerDestinations(testData.destinations);
+    traveler1.getApprovedTripsForCurrentYear();
+    expect(traveler1.getApprovedTripsForCurrentYear()[0]).to.deep.equal(traveler1.trips[0]);
   })
 
 });
