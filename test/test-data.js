@@ -1,6 +1,6 @@
 const testData = {
   travelers: [{
-    id: 1,
+    id: 44,
     name: "Ham Leadbeater",
     travelerType: "relaxer"
   },
@@ -57,6 +57,16 @@ const testData = {
     date: "2022/02/25",
     duration: 10,
     status: "approved",
+    suggestedActivities: []
+  },
+  {
+    id: 5,
+    userID: 44,
+    destinationID: 49,
+    travelers: 1,
+    date: "2022/09/15",
+    duration: 2,
+    status: "pending",
     suggestedActivities: []
   }],
   destinations: [{

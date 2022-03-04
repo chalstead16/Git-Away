@@ -5,6 +5,14 @@ class Traveler {
     this.travelerType = travelerRawData.travelerType;
     this.trips = [];
   }
+
+  getTravelerTrips = (trips) => {
+    trips.forEach((trip) => {
+      if (trip.userID === this.id) {
+        this.trips.push(trip);
+      }
+    });
+  }
 }
 
 export default Traveler;

@@ -38,7 +38,13 @@ describe('Traveler', () => {
     expect(traveler4.travelerType).to.equal("photographer");
   })
 
-  it('should hold traveler\'s trips', () => {
+  it('should have a trips', () => {
     expect(traveler4.trips).to.deep.equal([]);
   })
+
+  it('should hold traveler\'s trips', () => {
+    traveler1.getTravelerTrips(testData.trips)
+    expect(traveler1.trips).to.deep.equal([testData.trips[0], testData.trips[4]])
+  })
+
 });
