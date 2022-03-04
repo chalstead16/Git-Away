@@ -47,4 +47,11 @@ describe('Traveler', () => {
     expect(traveler1.trips).to.deep.equal([testData.trips[0], testData.trips[4]])
   })
 
+  it('should add traveler desitnations to their trips', () => {
+    traveler1.getTravelerTrips(testData.trips)
+    traveler1.getTravelerDestinations(testData.destinations)
+    console.log(traveler1.trips)
+    expect(traveler1.trips[1].destination).to.deep.equal(testData.destinations[2])
+  })
+
 });
