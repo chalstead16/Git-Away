@@ -16,7 +16,7 @@ const fetchAllData = () => {
   Promise.all([fetchData('travelers'), fetchData('trips'), fetchData('destinations')])
     .then(data => {
       initializeData(data[0].travelers, data[1].trips, data[2].destinations);
-      updateDashboard()
+      updateDashboard();
   });
 };
 
@@ -28,8 +28,15 @@ const initializeData = (travelersRawData, tripsRawData, destinationsRawData) => 
 };
 
 const updateDashboard = () => {
-  domUpdates.displayWelcomeTraveler(traveler)
+  getCurrentTravelerInfo();
+  domUpdates.displayWelcomeTraveler(traveler);
+  domUpdates.displayTravelerTrips(traveler);
+}
+
+const getCurrentTravelerInfo = () => {
+  traveler.getTravelerTrips(trips);
+  traveler.getTravelerDestinations(destinations);
 }
 
 //event listeners
-window.addEventListener('load', fetchAllData)
+window.addEventListener('load', fetchAllData);
