@@ -35,18 +35,38 @@ class Traveler {
     return currentYearApprovedTrips;
   }
 
-  calculateTotalSpendForCurrentYear = () => {
-    let approvedTrips = this.getApprovedTripsforCurrentYear();
-    let totalTravelCost = 0;
+  calcualateTotalApprovedLodingSpendForCurrentYear = () => {
+    let approvedTrips = this.getApprovedTripsForCurrentYear();
+    let totalLodgingSpend = 0;
 
     let total = approvedTrips.forEach((trip) => {
-      totalSpend += (trip.destination.estimatedLodgingCostPerDay * trip.duration)
-      totalSpend =+ (trip.destination.estimatedFlightCostPerPerson * trip.duration)
-    })
+      totalLodgingSpend += (trip.destination.estimatedLodgingCostPerDay * trip.duration);
+    });
 
-    let totalWithFee = totalTravelCost * .1
+    return totalLodgingSpend;
+  }
 
-  return totalWithFee;
+  calculateTotalApprovedFlightSpendForCurrentYear = () => {
+    let approvedTrips = this.getApprovedTripsForCurrentYear();
+    let totalFlightSpend = 0;
+
+    let total = approvedTrips.forEach((trip) => {
+      totalFlightSpend += (trip.destination.estimatedFlightCostPerPerson * trip.travelers);
+    });
+
+    return totalFlightSpend;
+  }
+
+  calculateTotalSpendForCurrentYear = () => {
+    let totalLodgingSpend = this.calcualateTotalApprovedLodingSpendForCurrentYear();
+    let totalFlightSpend = this.calculateTotalApprovedFlightSpendForCurrentYear();
+
+    let totalTravelCost = totalLodgingSpend + totalFlightSpend;
+    let totalFee = totalTravelCost * .1
+
+    const totalApprovedSpend = totalTravelCost + totalFee;
+
+    return totalApprovedSpend;
   }
 }
 

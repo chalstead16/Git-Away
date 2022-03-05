@@ -44,20 +44,41 @@ describe('Traveler', () => {
 
   it('should hold traveler\'s trips', () => {
     traveler1.getTravelerTrips(testData.trips);
-    expect(traveler1.trips).to.deep.equal([testData.trips[0], testData.trips[4]])
+    expect(traveler1.trips).to.deep.equal([testData.trips[0], testData.trips[4], testData.trips[5], testData.trips[6]])
   })
 
   it('should add traveler desitnations to their trips', () => {
     traveler1.getTravelerTrips(testData.trips);
     traveler1.getTravelerDestinations(testData.destinations);
+
     expect(traveler1.trips[1].destination).to.deep.equal(testData.destinations[2]);
   })
 
   it('should get all approved trips for current year', () => {
     traveler1.getTravelerTrips(testData.trips);
     traveler1.getTravelerDestinations(testData.destinations);
-    traveler1.getApprovedTripsForCurrentYear();
-    expect(traveler1.getApprovedTripsForCurrentYear()[0]).to.deep.equal(traveler1.trips[0]);
+
+    expect(traveler1.getApprovedTripsForCurrentYear()).to.deep.equal([traveler1.trips[0],traveler1.trips[3]]);
   })
 
+  it('should calculate total lodging spend for approved trips this year', () => {
+    traveler1.getTravelerTrips(testData.trips);
+    traveler1.getTravelerDestinations(testData.destinations);
+
+    expect(traveler1.calcualateTotalApprovedLodingSpendForCurrentYear()).to.equal(1300)
+  })
+
+  it('should calculate total totalFlightSpend spend for approved trips this year', () => {
+    traveler1.getTravelerTrips(testData.trips);
+    traveler1.getTravelerDestinations(testData.destinations);
+
+    expect(traveler1.calculateTotalApprovedFlightSpendForCurrentYear()).to.equal(1900)
+  })
+
+  it('should calculate total spend for approved trips this year', () => {
+    traveler1.getTravelerTrips(testData.trips);
+    traveler1.getTravelerDestinations(testData.destinations);
+
+    expect(traveler1.calculateTotalSpendForCurrentYear()).to.equal(3520)
+  })
 });
