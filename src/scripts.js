@@ -28,14 +28,20 @@ const initializeData = (travelersRawData, tripsRawData, destinationsRawData) => 
 };
 
 const updateDashboard = () => {
-  getCurrentTravelerInfo();
+  getTravelerTripsAndDestinations();
   domUpdates.displayWelcomeTraveler(traveler);
   domUpdates.displayTravelerTrips(traveler);
+  updateAnnualSpend();
 }
 
-const getCurrentTravelerInfo = () => {
+const getTravelerTripsAndDestinations = () => {
   traveler.getTravelerTrips(trips);
   traveler.getTravelerDestinations(destinations);
+}
+
+const updateAnnualSpend = () => {
+  const annualSpend = traveler.calculateTotalSpendForCurrentYear();
+  domUpdates.displayCurrentAnnualSpend(annualSpend);
 }
 
 //event listeners
