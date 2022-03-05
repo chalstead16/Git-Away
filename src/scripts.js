@@ -24,4 +24,5 @@ const initializeData = (travelersRawData, tripsRawData, destinationsRawData) => 
   destinations = destinationsRawData.map(destination => new Destination(destination));
 };
 
-fetchAllData()
+//event listeners
+window.addEventListener('load', fetchAllData)
