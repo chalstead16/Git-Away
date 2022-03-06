@@ -76,6 +76,13 @@ const addDestinationsToForm = (destinations) => {
   });
 };
 
+const requestTravelQuote = (destinations) => {
+  const requestedDestinationDetails = destinations.find(desitination => {
+    return destination.destination === destinationInput;
+  });
+  console.log(requestedDestinationDetails)
+};
+
 const submitTravelRequest = () => {
   if(destinationInput.value && travelersInput.value && dateInput.value && tripDuration.value) {
     createTripRequest();
@@ -86,3 +93,5 @@ const submitTravelRequest = () => {
 window.addEventListener('load', fetchAllData);
 
 requestButton.addEventListener('click', submitTravelRequest);
+
+quoteButton.addEventListener('click', requestTravelQuote);
