@@ -85,7 +85,16 @@ const findRequestedDestination = () => {
 };
 
 const calculateTravelQuote = () => {
-  findRequestedDestination();
+  const requestedDestination = findRequestedDestination();
+
+  const requestedTravelQuote = (durationInput.value * requestedDestination.estimatedLodgingCostPerDay) + (travelersInput.value * requestedDestination.estimatedFlightCostPerPerson);
+
+  const requestedTravelAgentFee = requestedTravelQuote * .1;
+
+  const totalQuote = requestedTravelQuote + requestedTravelAgentFee;
+
+  console.log(totalQuote)
+  return totalQuote;
 };
 
 
