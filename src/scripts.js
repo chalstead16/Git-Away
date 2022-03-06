@@ -6,6 +6,7 @@ import Trip from './Trip';
 import Destination from './Destination';
 
 //query selectors
+const requestForm = document.querySelector('.js-form');
 const dateInput = document.querySelector('.js-departure-date');
 const durationInput = document.querySelector('.js-duration');
 const travelersInput = document.querySelector('.js-total-travelers');
@@ -60,7 +61,7 @@ const createTripRequest = () => {
     destinationID: parseInt(destinationInput.value),
     travelers: parseInt(travelersInput.value),
     date: dateInput.value,
-    duration: parseInt(tripDuration.value),
+    duration: parseInt(duration.value),
     status: 'pending',
     suggestedActivites: []
   }
@@ -76,22 +77,39 @@ const addDestinationsToForm = (destinations) => {
   });
 };
 
-const requestTravelQuote = (destinations) => {
-  const requestedDestinationDetails = destinations.find(desitination => {
-    return destination.destination === destinationInput;
-  });
-  console.log(requestedDestinationDetails)
+const findRequestedDestination = () => {
+  const requestedDestinationDetails = destinations.find(destination => {
+    return destination.destination === destinationsInput.value;
+  })
+  return requestedDestinationDetails;
 };
 
-const submitTravelRequest = () => {
-  if(destinationInput.value && travelersInput.value && dateInput.value && tripDuration.value) {
-    createTripRequest();
-  }
+const calculateTravelQuote = () => {
+  findRequestedDestination();
 };
+
+
+const validateRequestForm = (event) => {
+  if (destinationsInput.value &&
+     travelersInput.value &&
+     dateInput.value &&
+     durationInput.value) {
+    calculateTravelQuote();
+  } else {
+    return
+  }
+}
+
+// const submitTravelRequest = () => {
+  //   if (destinationsInput.value && travelersInput.value && dateInput.value && tripDuration.value) {
+    //     createTripRequest();
+    //   }
+    // };
 
 //event listeners
 window.addEventListener('load', fetchAllData);
-
-requestButton.addEventListener('click', submitTravelRequest);
-
-quoteButton.addEventListener('click', requestTravelQuote);
+requestForm.addEventListener('submit', function (event) {
+  event.preventDefault();
+  validateRequestForm();
+});
+//requestButton.addEventListener('submit', submitTravelRequest);
