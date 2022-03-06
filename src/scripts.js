@@ -1,5 +1,5 @@
 import './css/styles.css';
-import {fetchData,postData} from './apiCalls';
+import {fetchData, postData} from './apiCalls';
 import domUpdates from './domUpdates';
 import Traveler from './Traveler';
 import Trip from './Trip';
@@ -40,6 +40,7 @@ const updateDashboard = () => {
   domUpdates.displayWelcomeTraveler(traveler);
   domUpdates.displayTravelerTrips(traveler);
   updateAnnualSpend();
+  addDestinationsToForm(destinations);
 };
 
 const getTravelerTripsAndDestinations = () => {
@@ -58,13 +59,30 @@ const createTripRequest = () => {
     userID: traveler.id,
     destinationID: parseInt(destinationInput.value),
     travelers: parseInt(travelersInput.value),
-    date: dateInput.value.split('-').('/'),
+    date: dateInput.value,
     duration: parseInt(tripDuration.value),
     status: 'pending',
     suggestedActivites: []
   }
   postData(requestedTrip, 'trips');
-}
+};
+
+const addDestinationsToForm = (destinations) => {
+  const getDestination = destinations.forEach(destination => {
+    const destinationOption = document.createElement('option');
+    destinationOption.innerText = destination.destination;
+    destinationOption.vale = destination.destination;
+    destinationsInput.appendChild(destinationOption);
+  });
+};
+
+const submitTravelRequest = () => {
+  if(destinationInput.value && travelersInput.value && dateInput.value && tripDuration.value) {
+    createTripRequest();
+  }
+};
 
 //event listeners
 window.addEventListener('load', fetchAllData);
+
+requestButton.addEventListener('click', submitTravelRequest);

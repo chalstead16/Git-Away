@@ -16,4 +16,4 @@ const postData = (data, extension) => {
   .catch(err => console.log(err));
 };
 
-export default {fetchData, postData};
+export {fetchData, postData};
