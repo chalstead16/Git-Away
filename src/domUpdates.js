@@ -10,7 +10,7 @@ let domUpdates = {
       displayTrips.innerHTML += `
       <article id="trip-card">
         <h4>${trip.destination.destination}</h4>
-        <img class="destination" src="${trip.destination.image}" alt="${trip.destination.alt}">
+        <img id="destination-pic" src="${trip.destination.image}" alt="${trip.destination.alt}">
         <p>Date: ${trip.date}</p>
         <p>Duration: ${trip.duration} day(s)</p>
         <p>Total Traveler(s): ${trip.travelers}</p>
