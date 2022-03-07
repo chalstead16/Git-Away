@@ -3,7 +3,7 @@ const helperFunctions = {
     element.classList.remove('hidden');
   },
 
-  hidden(element) {
+  hide(element) {
     element.classList.add('hidden');
   }
 };
