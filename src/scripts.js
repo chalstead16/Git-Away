@@ -80,8 +80,7 @@ const calculateTravelQuote = () => {
 
   const totalQuote = requestedTravelQuote + requestedTravelAgentFee;
 
-  console.log(totalQuote)
-  return totalQuote;
+  domUpdates.displayEstimatedTravelQuote(totalQuote.toFixed(2));
 };
 
 const estimateTravelQuote = () => {
@@ -111,7 +110,10 @@ const createTripRequest = () => {
 };
 
 const submitTravelRequest = () => {
-  if (dateInput.value && durationInput.value && travelersInput.value && destinationsInput.value) {
+  if (dateInput.value &&
+     durationInput.value &&
+     travelersInput.value &&
+     destinationsInput.value) {
     createTripRequest();
   };
 };
