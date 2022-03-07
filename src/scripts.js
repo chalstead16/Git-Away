@@ -54,19 +54,6 @@ const updateAnnualSpend = () => {
   domUpdates.displayCurrentAnnualSpend(annualSpend);
 };
 
-const createTripRequest = () => {
-  const requestedTrip = {
-    id: trips.length + 1,
-    userID: traveler.id,
-    destinationID: parseInt(destinationInput.value),
-    travelers: parseInt(travelersInput.value),
-    date: dateInput.value,
-    duration: parseInt(duration.value),
-    status: 'pending',
-    suggestedActivites: []
-  }
-  postData(requestedTrip, 'trips');
-};
 
 const addDestinationsToForm = (destinations) => {
   const getDestination = destinations.forEach(destination => {
@@ -81,7 +68,7 @@ const findRequestedDestination = () => {
   const requestedDestinationDetails = destinations.find(destination => {
     return destination.destination === destinationsInput.value;
   })
-  return requestedDestinationDetails;
+return requestedDestinationDetails;
 };
 
 const calculateTravelQuote = () => {
@@ -97,7 +84,6 @@ const calculateTravelQuote = () => {
   return totalQuote;
 };
 
-
 const validateRequestForm = (event) => {
   if (destinationsInput.value &&
      travelersInput.value &&
@@ -107,18 +93,35 @@ const validateRequestForm = (event) => {
   } else {
     return
   }
-}
+};
 
-// const submitTravelRequest = () => {
-  //   if (destinationsInput.value && travelersInput.value && dateInput.value && tripDuration.value) {
-    //     createTripRequest();
-    //   }
-    // };
+const createTripRequest = () => {
+  const requestedDestination = findRequestedDestination();
+
+  const requestedTrip = {
+    id: trips.length + 1,
+    userID: traveler.id,
+    destinationID: requestedDestination.id,
+    travelers: parseInt(travelersInput.value),
+    date: dateInput.value.split("-").join("/"),
+    duration: parseInt(durationInput.value),
+    status: 'pending',
+    suggestedActivities: []
+  }
+
+  postData(requestedTrip);
+};
+
+const submitTravelRequest = () => {
+  if (dateInput.value && durationInput.value && travelersInput.value && destinationsInput.value) {
+    createTripRequest();
+  };
+};
 
 //event listeners
 window.addEventListener('load', fetchAllData);
+//quoteButton.addEventListener('click',   );
 requestForm.addEventListener('submit', function (event) {
   event.preventDefault();
-  validateRequestForm();
+  submitTravelRequest();
 });
-//requestButton.addEventListener('submit', submitTravelRequest);
