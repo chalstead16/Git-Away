@@ -22,15 +22,26 @@ let domUpdates = {
     });
   },
 
-  displayCurrentAnnualSpend(annualSpend) {
-    const totalSpend = document.querySelector('.js-total-spend');
-    totalSpend.innerText = `$${annualSpend}`;
+  displayCurrentAnnualSpend(traveler) {
+    const displaySpend = document.querySelector('.js-total-spend');
+    const annualSpend = traveler.calculateTotalSpendForCurrentYear();
+    displaySpend.innerText = `$${annualSpend}`;
   },
 
   displayEstimatedTravelQuote(quote) {
     const travelQuote = document.querySelector('.js-quote-message');
     travelQuote.innerText = `Travel Quote: $${quote} *includes 10% agent fee*`
-  }
+  },
+
+  displayDestinationsToTravelRequestForm(destinations) {
+    const destinationsInput = document.querySelector('.js-destination');
+    const getDestination = destinations.forEach(destination => {
+      const destinationOption = document.createElement('option');
+      destinationOption.innerText = destination.destination;
+      destinationOption.value = destination.destination;
+      destinationsInput.appendChild(destinationOption);
+    });
+  },
 }
 
 export default domUpdates;
