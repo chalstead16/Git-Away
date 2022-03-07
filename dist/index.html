@@ -21,12 +21,12 @@
           <label for="duration">Select Duration (days)</label>
           <input type="number" name="duration" class="js-duration" id="duration" minLength="1" min="1" required>
           <label for="total-travelers">Total Travelers</label>
-          <input type="number" name="total-travelers" class="js-total-travelers" id="total-travelers" minlength="1" min="1" required>
+          <input type="number" name="total-travelers" class="js-total-travelers" id="total-travelers" min="1" required>
           <label for="destination">Select Destination</label>
           <select name="destination" class="js-destination" id="destination"  required></select>
-          <button name="button" class="js-quote-button" id="quote-button">Get Travel Quote</button>
-          <p class="hidden" id="quote"></p>
-          <button name="button" class="js-request-button hidden" id="request-button">Request Travel</button>
+          <button name="button" type="submit" class="js-quote-button" id="quote-button">Get Travel Quote</button>
+          <p class="js-quote-message hidden" id="quote-message"></p>
+          <button name="button" type="submit" class="js-request-button hidden" id="request-button">Request Travel</button>
         </form>
       </aside>
       <aside class="travel-total" id="travel-total">

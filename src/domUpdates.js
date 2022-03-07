@@ -19,12 +19,17 @@ let domUpdates = {
         <p>Status: ${trip.status}</p>
       </article>
       `
-    })
+    });
   },
 
   displayCurrentAnnualSpend(annualSpend) {
-    const totalSpend = document.querySelector('.js-total-spend')
-    totalSpend.innerText = `$${annualSpend}`
+    const totalSpend = document.querySelector('.js-total-spend');
+    totalSpend.innerText = `$${annualSpend}`;
+  },
+
+  displayEstimatedTravelQuote(quote) {
+    const travelQuote = document.querySelector('.js-quote-message');
+    travelQuote.innerText = `Travel Quote: $${quote} *includes 10% agent fee*`
   }
 }
 
