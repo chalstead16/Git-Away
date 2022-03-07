@@ -84,15 +84,13 @@ const calculateTravelQuote = () => {
   return totalQuote;
 };
 
-const validateRequestForm = (event) => {
+const estimateTravelQuote = () => {
   if (destinationsInput.value &&
      travelersInput.value &&
      dateInput.value &&
      durationInput.value) {
     calculateTravelQuote();
-  } else {
-    return
-  }
+  };
 };
 
 const createTripRequest = () => {
@@ -120,7 +118,12 @@ const submitTravelRequest = () => {
 
 //event listeners
 window.addEventListener('load', fetchAllData);
-//quoteButton.addEventListener('click',   );
+
+quoteButton.addEventListener('click', function (event) {
+  event.preventDefault();
+  estimateTravelQuote();
+});
+
 requestForm.addEventListener('submit', function (event) {
   event.preventDefault();
   submitTravelRequest();
