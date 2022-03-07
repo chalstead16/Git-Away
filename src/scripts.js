@@ -1,4 +1,5 @@
 import './css/styles.css';
+import helperFunctions from './utilities';
 import {fetchData, postData} from './apiCalls';
 import domUpdates from './domUpdates';
 import Traveler from './Traveler';
