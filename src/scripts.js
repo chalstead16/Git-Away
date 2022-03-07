@@ -7,9 +7,11 @@ import Trip from './Trip';
 import Destination from './Destination';
 
 //query selectors
+const login = document.querySelector('.js-login-page');
+const loginForm = document.querySelector('.js-login-form');
 const username = document.querySelector('.js-username');
 const password = document.querySelector('.js-password');
-const loginForm = document.querySelector('.js-login-form');
+const dashboard = document.querySelector('.js-traveler-dashboard');
 const requestForm = document.querySelector('.js-form');
 const dateInput = document.querySelector('.js-departure-date');
 const durationInput = document.querySelector('.js-duration');
@@ -39,7 +41,9 @@ const verifyCredentials = () => {
   if((usernameRoot === 'traveler') &&
    (0 < usernameID && usernameID < 51) &&
    (password.value === 'travel')) {
-     console.log(usernameRoot)
+     helperFunctions.show(dashboard);
+     helperFunctions.hide(login);
+     fetchAllData();
    };
 };
 
@@ -53,7 +57,7 @@ const fetchAllData = () => {
 
 const initializeData = (travelersRawData, tripsRawData, destinationsRawData) => {
   travelers = travelersRawData.map(traveler => new Traveler(traveler));
-  traveler = travelers[43];
+  traveler = travelers[usernameID - 1];
   trips = tripsRawData.map(trip => new Trip(trip));
   destinations = destinationsRawData.map(destination => new Destination(destination));
 };
@@ -141,7 +145,7 @@ const submitTravelRequest = () => {
 };
 
 //event listeners
-window.addEventListener('load', fetchAllData);
+//window.addEventListener('load', fetchAllData);
 
 loginForm.addEventListener('submit', function (event) {
   event.preventDefault();
