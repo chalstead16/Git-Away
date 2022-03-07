@@ -6,6 +6,9 @@ import Trip from './Trip';
 import Destination from './Destination';
 
 //query selectors
+const username = document.querySelector('.js-username');
+const password = document.querySelector('.js-password');
+const loginForm = document.querySelector('.js-login-form');
 const requestForm = document.querySelector('.js-form');
 const dateInput = document.querySelector('.js-departure-date');
 const durationInput = document.querySelector('.js-duration');
@@ -15,12 +18,30 @@ const quoteButton = document.querySelector('.js-quote-button');
 const requestButton = document.querySelector('.js-request-button');
 
 //global variables
+let usernameID;
 let travelers;
 let traveler;
 let trips;
 let destinations;
 
 // functions
+const getUsernameID = (event) => {
+  if (username.value && password.value) {
+    usernameID = username.value.slice(8);
+    verifyCredentials();
+  };
+};
+
+const verifyCredentials = () => {
+  const usernameRoot = username.value.slice(0, 8);
+
+  if((usernameRoot === 'traveler') &&
+   (0 < usernameID && usernameID < 51) &&
+   (password.value === 'travel')) {
+     console.log(usernameRoot)
+   };
+};
+
 const fetchAllData = () => {
   Promise.all([fetchData('travelers'), fetchData('trips'), fetchData('destinations')])
     .then(data => {
@@ -120,6 +141,11 @@ const submitTravelRequest = () => {
 
 //event listeners
 window.addEventListener('load', fetchAllData);
+
+loginForm.addEventListener('submit', function (event) {
+  event.preventDefault();
+  getUsernameID();
+});
 
 quoteButton.addEventListener('click', function (event) {
   event.preventDefault();
