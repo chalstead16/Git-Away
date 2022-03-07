@@ -4,7 +4,7 @@ const helperFunctions = {
   },
 
   hidden(element) {
-    element.classList.add('hidden')
+    element.classList.add('hidden');
   }
 };
 
