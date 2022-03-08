@@ -16,6 +16,7 @@ let domUpdates = {
 
   displayUpcomingTrips(traveler) {
     const displayTrips = document.querySelector('.js-trips');
+    displayTrips.innerHTML = ``;
     const presentOrFutureTrip = traveler.findPresentOrFutureTrips();
     presentOrFutureTrip.forEach(trip => {
       displayTrips.innerHTML += `
@@ -35,6 +36,7 @@ let domUpdates = {
 
   displayPendingTrips(traveler) {
     const displayPendingTrips = document.querySelector('.js-pending-trips');
+    displayPendingTrips.innerHTML = ``;
     const pendingTrips = traveler.findPendingTrips();
     pendingTrips.forEach(trip => {
       displayPendingTrips.innerHTML += `
@@ -54,6 +56,7 @@ let domUpdates = {
 
   displayPastTrips(traveler) {
     const displayPastTrips = document.querySelector('.js-past-trips');
+    displayPastTrips.innerHTML = ``;
     const pastTrips = traveler.findPastTrips();
     pastTrips.forEach(trip => {
       displayPastTrips.innerHTML += `
@@ -78,8 +81,8 @@ let domUpdates = {
   },
 
   displaySuccessfulTravelRequest() {
-    const requestFormMessages =  document.querySelector('.js-travel-request-messages')
-    requestFormMessages.innerHTML += `
+    const requestSuccess = document.querySelector('.js-request-success-message');
+    requestSuccess.innerHTML += `
       <p>Your Travel Request has been submitted to your agent. Thank you!</p>
     `;
   },
@@ -124,27 +127,15 @@ let domUpdates = {
     const durationInput = document.querySelector('.js-duration');
     const travelersInput = document.querySelector('.js-total-travelers');
     const destinationsInput = document.querySelector('.js-destination');
-    const requestFormMessages =  document.querySelector('.js-travel-request-messages')
-    requestFormMessages.innerHTML = ``;
+    const travelQuote = document.querySelector('.js-quote-message');
+    const requestSuccess = document.querySelector('.js-request-success-message');
 
     dateInput.value = '';
     durationInput.value = '';
     travelersInput.value = '';
-    destinationsInput.value = '';
-  },
-
-  resetTravelerDashboard() {
-    const welcome = document.querySelector('.js-welcome-message');
-    const displayTrips = document.querySelector('.js-trips');
-    const displayPendingTrips = document.querySelector('.js-pending-trips');
-    const displayPastTrips = document.querySelector('.js-past-trips');
-    const displaySpend = document.querySelector('.js-total-spend');
-
-    welcome.innerText = ``;
-    displayTrips.innerHTML = ``;
-    displayPendingTrips.innerHTML = ``;
-    displayPastTrips.innerHTML = ``;
-    displaySpend.innerText = ``
+    destinationsInput.value = 'placeholder';
+    travelQuote.innerText = ``;
+    requestSuccess.innerHTML = ``;
   },
 }
 
