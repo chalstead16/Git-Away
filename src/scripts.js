@@ -16,7 +16,6 @@ const requestForm = document.querySelector('.js-form');
 const dateInput = document.querySelector('.js-departure-date');
 const durationInput = document.querySelector('.js-duration');
 const travelersInput = document.querySelector('.js-total-travelers');
-const destinationsInput = document.querySelector('.js-destination');
 const quoteButton = document.querySelector('.js-quote-button');
 const requestButton = document.querySelector('.js-request-button');
 
@@ -31,11 +30,11 @@ let destinations;
 const getUsernameID = (event) => {
   if (username.value && password.value) {
     usernameID = username.value.slice(8);
-    verifyCredentials();
+    verifyLoginCredentials();
   };
 };
 
-const verifyCredentials = () => {
+const verifyLoginCredentials = () => {
   const usernameRoot = username.value.slice(0, 8);
 
   if((usernameRoot === 'traveler') &&
@@ -51,7 +50,7 @@ const fetchAllData = () => {
   Promise.all([fetchData('travelers'), fetchData('trips'), fetchData('destinations')])
     .then(data => {
       initializeData(data[0].travelers, data[1].trips, data[2].destinations);
-      updateDashboard();
+      updateTravelDashboard();
   });
 };
 
@@ -62,32 +61,17 @@ const initializeData = (travelersRawData, tripsRawData, destinationsRawData) => 
   destinations = destinationsRawData.map(destination => new Destination(destination));
 };
 
-const updateDashboard = () => {
+const updateTravelDashboard = () => {
   getTravelerTripsAndDestinations();
   domUpdates.displayWelcomeTraveler(traveler);
   domUpdates.displayTravelerTrips(traveler);
-  updateAnnualSpend();
-  addDestinationsToForm(destinations);
+  domUpdates.displayCurrentAnnualSpend(traveler);
+  domUpdates.displayDestinationsToTravelRequestForm(destinations);
 };
 
 const getTravelerTripsAndDestinations = () => {
   traveler.getTravelerTrips(trips);
   traveler.getTravelerDestinations(destinations);
-};
-
-const updateAnnualSpend = () => {
-  const annualSpend = traveler.calculateTotalSpendForCurrentYear();
-  domUpdates.displayCurrentAnnualSpend(annualSpend);
-};
-
-
-const addDestinationsToForm = (destinations) => {
-  const getDestination = destinations.forEach(destination => {
-    const destinationOption = document.createElement('option');
-    destinationOption.innerText = destination.destination;
-    destinationOption.vale = destination.destination;
-    destinationsInput.appendChild(destinationOption);
-  });
 };
 
 const findRequestedDestination = () => {
@@ -130,7 +114,7 @@ const createTripRequest = () => {
     duration: parseInt(durationInput.value),
     status: 'pending',
     suggestedActivities: []
-  }
+  };
 
   postData(requestedTrip);
 };
@@ -145,8 +129,6 @@ const submitTravelRequest = () => {
 };
 
 //event listeners
-//window.addEventListener('load', fetchAllData);
-
 loginForm.addEventListener('submit', function (event) {
   event.preventDefault();
   getUsernameID();
