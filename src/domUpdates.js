@@ -1,4 +1,14 @@
 let domUpdates = {
+  displayInvalidUsernameError() {
+    const loginError = document.querySelector('.js-login-error');
+    loginError.innerText = 'Hm, we don\'t recongize that username, try again.';
+  },
+
+  displayInvalidPasswordError() {
+    const loginError = document.querySelector('.js-login-error');
+    loginError.innerText = 'Hm, we don\'t recongize that password, try again.';
+  },
+
   displayWelcomeTraveler(traveler) {
     const welcome = document.querySelector('.js-welcome-message');
     welcome.innerText = `Welcome, ${traveler.name}`
