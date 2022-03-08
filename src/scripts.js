@@ -66,6 +66,7 @@ const signIn = (event) => {
 };
 
 const fetchAllData = () => {
+  console.log("fetch test")
   Promise.all([fetchData('travelers'), fetchData('trips'), fetchData('destinations')])
     .then(data => {
       initializeData(data[0].travelers, data[1].trips, data[2].destinations);
@@ -193,7 +194,10 @@ const createTripRequest = () => {
     suggestedActivities: []
   };
   helperFunctions.hide(quoteMessage);
-  postData(requestedTrip);
+  postData('trips', requestedTrip).then((data) => {
+    domUpdates.displaySuccessfulTravelRequest();
+    timerSuccessMessage();
+  });
 };
 
 const submitTravelRequest = () => {
@@ -203,6 +207,15 @@ const submitTravelRequest = () => {
      destinationsInput.value) {
     createTripRequest();
   };
+};
+
+const timerSuccessMessage = () => {
+  setTimeout(function() {
+    domUpdates.resetTravelRequestFormDisplay();
+    domUpdates.resetTravelerDashboard();
+    helperFunctions.hide(requestButton);
+    fetchAllData();
+  }, 2000);
 };
 
 //event listeners
