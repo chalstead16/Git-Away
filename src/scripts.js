@@ -28,24 +28,51 @@ let trips;
 let destinations;
 
 // functions
-const getUsernameID = (event) => {
-  if (username.value && password.value) {
-    usernameID = username.value.slice(8);
-    verifyLoginCredentials();
-  };
-};
-
-const verifyLoginCredentials = () => {
+const verifyUsernameCredentials = () => {
   const usernameRoot = username.value.slice(0, 8);
+  usernameID = username.value.slice(8);
 
-  if((usernameRoot === 'traveler') &&
-   (0 < usernameID && usernameID < 51) &&
-   (password.value === 'travel')) {
-     helperFunctions.show(dashboard);
-     helperFunctions.hide(login);
-     fetchAllData();
-   };
+  if((usernameRoot !== 'traveler') || (usernameID === undefined) ||
+   (usernameID === '0') || (usernameID === '00') || (username.value === 'traveler')) {
+    username.className = 'failure'
+    domUpdates.displayInvalidUsernameError();
+  } else {
+    username.className = 'success'
+  }
 };
+
+const verifyPasswordCredentials = () => {
+  if(password.value !== 'travel') {
+    password.className = 'failure'
+    domUpdates.displayInvalidPasswordError();
+  } else {
+    password.className = 'success'
+  }
+};
+
+const signIn = (event) => {
+  verifyUsernameCredentials();
+  verifyPasswordCredentials();
+  if (username.classList.contains('success') && password.classList.contains('success')) {
+    helperFunctions.show(dashboard);
+    helperFunctions.hide(login);
+    fetchAllData();
+  }
+};
+
+// const verifyLoginCredentials = () => {
+//   const usernameRoot = username.value.slice(0, 8);
+//
+//   if((usernameRoot === 'traveler') &&
+//    (0 < usernameID && usernameID < 51) &&
+//    (password.value === 'travel')) {
+//      helperFunctions.show(dashboard);
+//      helperFunctions.hide(login);
+//      fetchAllData();
+//    } else {
+//      helperFunctions.show()
+//    };
+// };
 
 const fetchAllData = () => {
   Promise.all([fetchData('travelers'), fetchData('trips'), fetchData('destinations')])
@@ -143,7 +170,7 @@ const submitTravelRequest = () => {
 //event listeners
 loginForm.addEventListener('submit', function (event) {
   event.preventDefault();
-  getUsernameID();
+  signIn();
 });
 
 quoteButton.addEventListener('click', function (event) {
