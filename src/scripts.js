@@ -16,6 +16,7 @@ const requestForm = document.querySelector('.js-form');
 const dateInput = document.querySelector('.js-departure-date');
 const durationInput = document.querySelector('.js-duration');
 const travelersInput = document.querySelector('.js-total-travelers');
+const destinationsInput = document.querySelector('.js-destination');
 const quoteButton = document.querySelector('.js-quote-button');
 const requestButton = document.querySelector('.js-request-button');
 
@@ -68,18 +69,20 @@ const organizeAllTripsByMostRecentDate = (trips) => {
   return sortTrips;
 };
 
-const updateTravelDashboard = () => {
-  getTravelerTripsAndDestinations();
-  domUpdates.displayWelcomeTraveler(traveler);
-  domUpdates.displayTravelerTrips(traveler);
-  domUpdates.displayCurrentAnnualSpend(traveler);
-  domUpdates.displayDestinationsToTravelRequestForm(destinations);
-};
 
 const getTravelerTripsAndDestinations = () => {
   organizeAllTripsByMostRecentDate(trips);
   traveler.getTravelerTrips(trips);
   traveler.getTravelerDestinations(destinations);
+};
+
+const updateTravelDashboard = () => {
+  getTravelerTripsAndDestinations();
+  domUpdates.displayWelcomeTraveler(traveler);
+  domUpdates.displayTravelerTrips(traveler);
+  domUpdates.displayPastTrips(traveler);
+  domUpdates.displayCurrentAnnualSpend(traveler);
+  domUpdates.displayDestinationsToTravelRequestForm(destinations);
 };
 
 const findRequestedDestination = () => {
