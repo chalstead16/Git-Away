@@ -79,7 +79,8 @@ const getTravelerTripsAndDestinations = () => {
 const updateTravelDashboard = () => {
   getTravelerTripsAndDestinations();
   domUpdates.displayWelcomeTraveler(traveler);
-  domUpdates.displayTravelerTrips(traveler);
+  domUpdates.displayUpcomingTrips(traveler);
+  domUpdates.displayPendingTrips(traveler);
   domUpdates.displayPastTrips(traveler);
   domUpdates.displayCurrentAnnualSpend(traveler);
   domUpdates.displayDestinationsToTravelRequestForm(destinations);
