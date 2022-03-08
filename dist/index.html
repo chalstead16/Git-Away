@@ -35,11 +35,13 @@
           <select name="destination" class="js-destination" id="destination"  required>
             <option value="placeholder" disabled selected>Select Travel Destination</option>
           </select>
-          <p class="js-departure-date-error hidden" id="departure-date-error"></p>
-          <p class="js-duration-error hidden" id="duration-error"></p>
-          <p class="js-total-travelers-error hidden" id="total-travelers-error"></p>
-          <p class="js-destination-error hidden" id="destination-error"></p>
-          <p class="js-quote-message hidden" id="quote-message"></p>
+          <div class="js-travel-request-messages" id="travel-request-messages">
+            <p class="js-departure-date-error hidden" id="departure-date-error"></p>
+            <p class="js-duration-error hidden" id="duration-error"></p>
+            <p class="js-total-travelers-error hidden" id="total-travelers-error"></p>
+            <p class="js-destination-error hidden" id="destination-error"></p>
+            <p class="js-quote-message hidden" id="quote-message"></p>
+          </div>
           <button name="button" type="submit" class="js-quote-button" id="quote-button">Get Travel Quote</button>
           <button name="button" type="submit" class="js-request-button hidden" id="request-button">Request Travel</button>
         </form>
@@ -55,15 +57,16 @@
         <button name="button" class="js-approved-travel-button" id="approved-travel-button">Approved Travel</button>
         <button name="button" class="js-pending-travel-button" id="pending-travel-button">Pending Travel</button>
       </section>
-      <h2>Upcoming Travel</h2>
-      <section class="js-trips"></section>
-      <h2>Pending Travel</h2>
-      <section class="js-pending-trips"></section>
-      <h2>Past Travel</h2>
-      <section class="js-past-trips"></section>
+      <div id="trip-cards-container">
+        <h2>Upcoming Travel</h2>
+        <section class="js-trips" id="upcoming-trips"></section>
+        <h2>Pending Travel</h2>
+        <section class="js-pending-trips" id="pending-trips"></section>
+        <h2>Past Travel</h2>
+        <section class="js-past-trips" id="past-trips"></section>
+      </div>
     </div>
   </main>
-  <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
   <script src="bundle.js"></script>
 </body>
 </html>
