@@ -21,7 +21,8 @@ const dateError = document.querySelector('.js-departure-date-error');
 const durationError = document.querySelector('.js-duration-error');
 const travelersError = document.querySelector('.js-total-travelers-error');
 const destinationError = document.querySelector('.js-destination-error');
-const quoteMessage = document.querySelector('.js-quote-message')
+const quoteMessage = document.querySelector('.js-quote-message');
+const requestSuccess = document.querySelector('.js-request-success-message');
 const quoteButton = document.querySelector('.js-quote-button');
 const requestButton = document.querySelector('.js-request-button');
 
@@ -195,8 +196,10 @@ const createTripRequest = () => {
   };
   helperFunctions.hide(quoteMessage);
   postData('trips', requestedTrip).then((data) => {
+    helperFunctions.show(requestSuccess);
     domUpdates.displaySuccessfulTravelRequest();
     timerSuccessMessage();
+    fetchAllData();
   });
 };
 
@@ -212,9 +215,8 @@ const submitTravelRequest = () => {
 const timerSuccessMessage = () => {
   setTimeout(function() {
     domUpdates.resetTravelRequestFormDisplay();
-    domUpdates.resetTravelerDashboard();
     helperFunctions.hide(requestButton);
-    fetchAllData();
+    helperFunctions.hide(requestSuccess);
   }, 2000);
 };
 
