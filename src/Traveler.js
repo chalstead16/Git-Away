@@ -1,3 +1,4 @@
+import helperFunctions from './utilities';
 class Traveler {
   constructor(travelerRawData) {
     this.id = travelerRawData.id;
@@ -12,6 +13,27 @@ class Traveler {
         this.trips.push(trip);
       }
     });
+  }
+
+  findPastTrips = () => {
+    const pastTrips = this.trips.filter(trip => {
+      return helperFunctions.getToday() > trip.date.split('/').join('') && trip.status === 'approved';
+    });
+    return pastTrips;
+  }
+
+  findPresentOrFutureTrips = () => {
+    const presentOrFutureTrips = this.trips.filter(trip => {
+      return helperFunctions.getToday() < trip.date.split('/').join('') && trip.status === 'approved';
+    });
+    return presentOrFutureTrips;
+  }
+
+  findPendingTrips = () => {
+    const pendingTrips = this.trips.filter(trip => {
+      return trip.status === 'pending';
+    });
+    return pendingTrips;
   }
 
   getTravelerDestinations = (destinations) => {
