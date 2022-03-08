@@ -77,6 +77,26 @@ let domUpdates = {
     displaySpend.innerText = `$${annualSpend}`;
   },
 
+  displayDateRequestError() {
+    const dateError = document.querySelector('.js-departure-date-error');
+    dateError.innerText = 'Your selection was invalid. Please select an upcoming date.';
+  },
+
+  displayDurationError() {
+    const durationError = document.querySelector('.js-duration-error');
+    durationError.innerText = 'Your selection was invalid. Please include the duration of your travel.'
+  },
+
+  displayTravelersError() {
+    const travelersError = document.querySelector('.js-total-travelers-error');
+    travelersError.innerText = 'Your selection was invalid. Please include the total amount of travelers.'
+  },
+
+  displayDestinationError() {
+    const destinationError = document.querySelector('.js-destination-error');
+    destinationError.innerText = 'Your selection was invalid. Please select a travel destination.'
+  },
+
   displayEstimatedTravelQuote(quote) {
     const travelQuote = document.querySelector('.js-quote-message');
     travelQuote.innerText = `Travel Quote: $${quote} *includes 10% agent fee*`
