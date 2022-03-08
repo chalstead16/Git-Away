@@ -61,6 +61,13 @@ const initializeData = (travelersRawData, tripsRawData, destinationsRawData) => 
   destinations = destinationsRawData.map(destination => new Destination(destination));
 };
 
+const organizeAllTripsByMostRecentDate = (trips) => {
+  const sortTrips = trips.sort((trip1, trip2) => {
+    return new Date(trip2.date) - new Date(trip1.date)
+  });
+  return sortTrips;
+};
+
 const updateTravelDashboard = () => {
   getTravelerTripsAndDestinations();
   domUpdates.displayWelcomeTraveler(traveler);
@@ -70,6 +77,7 @@ const updateTravelDashboard = () => {
 };
 
 const getTravelerTripsAndDestinations = () => {
+  organizeAllTripsByMostRecentDate(trips);
   traveler.getTravelerTrips(trips);
   traveler.getTravelerDestinations(destinations);
 };
