@@ -17,6 +17,12 @@ const dateInput = document.querySelector('.js-departure-date');
 const durationInput = document.querySelector('.js-duration');
 const travelersInput = document.querySelector('.js-total-travelers');
 const destinationsInput = document.querySelector('.js-destination');
+const dateError = document.querySelector('.js-departure-date-error');
+const durationError = document.querySelector('.js-duration-error');
+const travelersError = document.querySelector('.js-total-travelers-error');
+const destinationError = document.querySelector('.js-destination-error');
+const quoteMessage = document.querySelector('.js-quote-message');
+const requestSuccess = document.querySelector('.js-request-success-message');
 const quoteButton = document.querySelector('.js-quote-button');
 const requestButton = document.querySelector('.js-request-button');
 
@@ -28,26 +34,40 @@ let trips;
 let destinations;
 
 // functions
-const getUsernameID = (event) => {
-  if (username.value && password.value) {
-    usernameID = username.value.slice(8);
-    verifyLoginCredentials();
-  };
+const verifyUsernameCredentials = () => {
+  const usernameRoot = username.value.slice(0, 8);
+  usernameID = username.value.slice(8);
+
+  if((usernameRoot !== 'traveler') || (usernameID === undefined) ||
+   (usernameID === '0') || (usernameID === '00') || (username.value === 'traveler')) {
+    username.className = 'failure'
+    domUpdates.displayInvalidUsernameError();
+  } else {
+    username.className = 'success'
+  }
 };
 
-const verifyLoginCredentials = () => {
-  const usernameRoot = username.value.slice(0, 8);
+const verifyPasswordCredentials = () => {
+  if(password.value !== 'travel') {
+    password.className = 'failure'
+    domUpdates.displayInvalidPasswordError();
+  } else {
+    password.className = 'success'
+  }
+};
 
-  if((usernameRoot === 'traveler') &&
-   (0 < usernameID && usernameID < 51) &&
-   (password.value === 'travel')) {
-     helperFunctions.show(dashboard);
-     helperFunctions.hide(login);
-     fetchAllData();
-   };
+const signIn = (event) => {
+  verifyUsernameCredentials();
+  verifyPasswordCredentials();
+  if (username.classList.contains('success') && password.classList.contains('success')) {
+    helperFunctions.show(dashboard);
+    helperFunctions.hide(login);
+    fetchAllData();
+  }
 };
 
 const fetchAllData = () => {
+  console.log("fetch test")
   Promise.all([fetchData('travelers'), fetchData('trips'), fetchData('destinations')])
     .then(data => {
       initializeData(data[0].travelers, data[1].trips, data[2].destinations);
@@ -93,6 +113,44 @@ const findRequestedDestination = () => {
 return requestedDestinationDetails;
 };
 
+const verifyTravelRequestDate = () => {
+  let today = new Date(helperFunctions.getToday());
+  let departureDate = new Date(dateInput.value);
+  if ((today > departureDate) || (!dateInput.value)) {
+    helperFunctions.show(dateError);
+    domUpdates.displayDateRequestError();
+  } else {
+    helperFunctions.hide(dateError);
+  }
+};
+
+const verifyTravelRequestDuration = () => {
+  if ((durationInput.value <= 0) || (!durationInput.value)) {
+    helperFunctions.show(durationError);
+    domUpdates.displayDurationError();
+  } else {
+    helperFunctions.hide(durationError);
+  }
+};
+
+const verifyTravelRequestTravelers = () => {
+  if ((travelersInput.value <= 0) || (!travelersInput.value)) {
+    helperFunctions.show(travelersError);
+    domUpdates.displayTravelersError();
+  } else {
+    helperFunctions.hide(travelersError);
+  }
+};
+
+const verifyTravelRequestDestination = () => {
+  if (destinationsInput.value === 'placeholder') {
+    helperFunctions.show(destinationError);
+    domUpdates.displayDestinationError();
+  } else {
+    helperFunctions.hide(destinationError);
+  }
+};
+
 const calculateTravelQuote = () => {
   const requestedDestination = findRequestedDestination();
 
@@ -102,15 +160,24 @@ const calculateTravelQuote = () => {
 
   const totalQuote = requestedTravelQuote + requestedTravelAgentFee;
 
+  helperFunctions.show(quoteMessage);
   domUpdates.displayEstimatedTravelQuote(totalQuote.toFixed(2));
 };
 
-const estimateTravelQuote = () => {
-  if (destinationsInput.value &&
+const getTravelQuote = () => {
+  const validDestination = destinationsInput.value !== 'placeholder';
+
+  verifyTravelRequestDate();
+  verifyTravelRequestDuration();
+  verifyTravelRequestTravelers();
+  verifyTravelRequestDestination();
+
+  if (validDestination &&
      travelersInput.value &&
      dateInput.value &&
      durationInput.value) {
     calculateTravelQuote();
+    helperFunctions.show(requestButton);
   };
 };
 
@@ -127,8 +194,13 @@ const createTripRequest = () => {
     status: 'pending',
     suggestedActivities: []
   };
-
-  postData(requestedTrip);
+  helperFunctions.hide(quoteMessage);
+  postData('trips', requestedTrip).then((data) => {
+    helperFunctions.show(requestSuccess);
+    domUpdates.displaySuccessfulTravelRequest();
+    timerSuccessMessage();
+    fetchAllData();
+  });
 };
 
 const submitTravelRequest = () => {
@@ -140,15 +212,23 @@ const submitTravelRequest = () => {
   };
 };
 
+const timerSuccessMessage = () => {
+  setTimeout(function() {
+    domUpdates.resetTravelRequestFormDisplay();
+    helperFunctions.hide(requestButton);
+    helperFunctions.hide(requestSuccess);
+  }, 2000);
+};
+
 //event listeners
 loginForm.addEventListener('submit', function (event) {
   event.preventDefault();
-  getUsernameID();
+  signIn();
 });
 
 quoteButton.addEventListener('click', function (event) {
   event.preventDefault();
-  estimateTravelQuote();
+  getTravelQuote();
 });
 
 requestForm.addEventListener('submit', function (event) {

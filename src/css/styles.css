@@ -1,5 +1,39 @@
-body {
-  background-color: pink;
+p {
+  margin: 5px;
+}
+
+.destination {
+  width: 180px;
+  height: 52px;
+  border-radius: 10px;
+}
+
+#trips-card-container {
+  display: flex;
+}
+
+
+#trip-card {
+  border: 2px solid black;
+  width: 186px;
+  height: 250px;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: flex-start;
+  font-size: 12px;
+}
+
+#upcoming-trips {
+  display: flex;
+}
+
+#pending-trips {
+  display: flex;
+}
+
+#past-trips {
+  display: flex;
 }
 
 .hidden {

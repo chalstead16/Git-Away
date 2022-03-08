@@ -4,20 +4,14 @@ const fetchData = (extension) => {
     .catch(err => console.log(err));
 };
 
-const postData = (data) => {
-  return fetch('http://localhost:3001/api/v1/trips', {
+const postData = (extension, data) => {
+  return fetch(`http://localhost:3001/api/v1/${extension}`, {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify(data)
   })
-  .then(response => {
-    if(!response.ok) {
-      throw new Error ('Please fill out fields in the form.')
-    } else {
-      alert ('Your request has been recieved! Please wait for the agent to approve.')
-      return response.json()
-    }
-  })
-};
+  .then(response => response.json())
+  .catch(err => console.log(err));
+}
 
 export {fetchData, postData};
