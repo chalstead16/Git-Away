@@ -1,12 +1,12 @@
 let domUpdates = {
   displayInvalidUsernameError() {
     const loginError = document.querySelector('.js-login-error');
-    loginError.innerText = 'Hm, we don\'t recongize that username, try again.';
+    loginError.innerText = 'Hmm, we don\'t recongize that username, try again.';
   },
 
   displayInvalidPasswordError() {
     const loginError = document.querySelector('.js-login-error');
-    loginError.innerText = 'Hm, we don\'t recongize that password, try again.';
+    loginError.innerText = 'Hmm, we don\'t recongize that password, try again.';
   },
 
   displayWelcomeTraveler(traveler) {
@@ -20,9 +20,11 @@ let domUpdates = {
     const presentOrFutureTrip = traveler.findPresentOrFutureTrips();
     presentOrFutureTrip.forEach(trip => {
       displayTrips.innerHTML += `
-      <article id="trip-card">
+      <article id="main-trip-card">
         <h4>${trip.destination.destination}</h4>
-        <img class="destination" src="${trip.destination.image}" alt="${trip.destination.alt}">
+        <div id="pic-wrapper">
+          <img class="destination" id="main-destination" src="${trip.destination.image}" alt="${trip.destination.alt}">
+        </div>
         <p>Date: ${trip.date}</p>
         <p>Duration: ${trip.duration} day(s)</p>
         <p>Total Traveler(s): ${trip.travelers}</p>
@@ -40,9 +42,11 @@ let domUpdates = {
     const pendingTrips = traveler.findPendingTrips();
     pendingTrips.forEach(trip => {
       displayPendingTrips.innerHTML += `
-      <article id="trip-card">
+      <article id="main-trip-card">
         <h4>${trip.destination.destination}</h4>
-        <img class="destination" src="${trip.destination.image}" alt="${trip.destination.alt}">
+          <div id="pic-wrapper">
+          <img class="destination" id="main-destination" src="${trip.destination.image}" alt="${trip.destination.alt}">
+          </div>
         <p>Date: ${trip.date}</p>
         <p>Duration: ${trip.duration} day(s)</p>
         <p>Total Traveler(s): ${trip.travelers}</p>
@@ -60,9 +64,11 @@ let domUpdates = {
     const pastTrips = traveler.findPastTrips();
     pastTrips.forEach(trip => {
       displayPastTrips.innerHTML += `
-      <article id="trip-card">
-        <h4>${trip.destination.destination}</h4>
-        <img class="destination" src="${trip.destination.image}" alt="${trip.destination.alt}">
+      <article id="past-trip-card">
+        <h5>${trip.destination.destination}</h5>
+        <div id="pic-wrapper">
+          <img class="destination" id="past-destination" src="${trip.destination.image}" alt="${trip.destination.alt}">
+        </div>
         <p>Date: ${trip.date}</p>
         <p>Duration: ${trip.duration} day(s)</p>
         <p>Total Traveler(s): ${trip.travelers}</p>
@@ -83,7 +89,7 @@ let domUpdates = {
   displaySuccessfulTravelRequest() {
     const requestSuccess = document.querySelector('.js-request-success-message');
     requestSuccess.innerHTML += `
-      <p>Your Travel Request has been submitted to your agent. Thank you!</p>
+      <p>Your travel request was submitted to your agent. Thank you!</p>
     `;
   },
 
@@ -109,7 +115,7 @@ let domUpdates = {
 
   displayEstimatedTravelQuote(quote) {
     const travelQuote = document.querySelector('.js-quote-message');
-    travelQuote.innerText = `Travel Quote: $${quote} *includes 10% agent fee*`;
+    travelQuote.innerText = `Travel Quote: $${quote} *includes 10% fee*`;
   },
 
   displayDestinationsToTravelRequestForm(destinations) {
