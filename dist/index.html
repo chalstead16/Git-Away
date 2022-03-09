@@ -5,13 +5,18 @@
   <title>Git Away</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Poppins:300" rel="stylesheet">
 </head>
 <body>
   <header>
     <h1>Git Away</h1>
+    <h2 class='js-welcome-message'></h2>
   </header>
   <section class="js-login-page" id="login">
-    <h1>Git-Away Traveler Login</h1>
+    <h2>Git-Away Traveler Login</h2>
     <form class="js-login-form" id="login-form">
       <input type="text" class="js-username" id="username" placeholder="username" required>
       <input type="password" class="js-password" id="password" placeholder="password" autocomplete="password" required>
@@ -20,10 +25,10 @@
     </form>
   </section>
   <main class="js-traveler-dashboard hidden">
-    <h2 class='js-welcome-message'></h2>
-    <section id="leftside">
+    <section id="travel-request-navigation">
+      <img class="travel-img" id="travel-img" src="./images/drawkit.svg" alt="travel scence">
       <aside class="travel-form" id="travel-form">
-        <h3>Make Travel Plans</h3>
+        <h2>Make Travel Plans</h2>
         <form class="js-form" id="form">
           <label for="departure-date">Select Departure Date</label>
           <input type="date" name="departure-date" class="js-departure-date" id="departure-date" min="2022-03-01"required>
@@ -43,20 +48,20 @@
             <p class="js-quote-message hidden" id="quote-message"></p>
             <p class="js-request-success-message hidden" id="request-success-message"></p>
           </div>
-          <button name="button" type="submit" class="js-quote-button" id="quote-button">Get Travel Quote</button>
+          <button name="button" type="submit" class="js-quote-button" id="request-button">Get Travel Quote</button>
           <button name="button" type="submit" class="js-request-button hidden" id="request-button">Request Travel</button>
         </form>
       </aside>
       <aside class="travel-total" id="travel-total">
-        <h3>Current Year Cost of Travel</h3>
-        <h4 class="js-total-spend">Total Travel Spend</h4>
+        <h4>Travel Expenses This Year</h4>
+        <h5 class="js-total-spend">Total Travel Spend</h5>
       </aside>
     </section>
     <div id="buttons-and-cards-container">
       <section id="trips-button-container">
-        <button name="button" class="js-all-travel-button" id="all-travel-button">All Travel</button>
-        <button name="button" class="js-approved-travel-button" id="approved-travel-button">Approved Travel</button>
-        <button name="button" class="js-pending-travel-button" id="pending-travel-button">Pending Travel</button>
+        <button name="button" class="js-all-travel-button" id="sort-travel-button">All Travel</button>
+        <button name="button" class="js-approved-travel-button" id="sort-travel-button">Approved Travel</button>
+        <button name="button" class="js-pending-travel-button" id="sort-travel-button">Pending Travel</button>
       </section>
       <div id="trip-cards-container">
         <h2>Upcoming Travel</h2>
