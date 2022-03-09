@@ -88,7 +88,7 @@ class Traveler {
 
     const totalApprovedSpend = totalTravelCost + totalFee;
 
-    return totalApprovedSpend;
+    return totalApprovedSpend.toFixed(2);
   }
 }
 

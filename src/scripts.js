@@ -1,3 +1,4 @@
+import '../images/drawkit.svg';
 import './css/styles.css';
 import helperFunctions from './utilities';
 import {fetchData, postData} from './apiCalls';
@@ -158,10 +159,10 @@ const calculateTravelQuote = () => {
 
   const requestedTravelAgentFee = requestedTravelQuote * .1;
 
-  const totalQuote = requestedTravelQuote + requestedTravelAgentFee;
+  const totalQuote = (requestedTravelQuote + requestedTravelAgentFee).toFixed(2);
 
   helperFunctions.show(quoteMessage);
-  domUpdates.displayEstimatedTravelQuote(totalQuote.toFixed(2));
+  domUpdates.displayEstimatedTravelQuote(totalQuote);
 };
 
 const getTravelQuote = () => {

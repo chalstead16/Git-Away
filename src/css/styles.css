@@ -1,39 +1,218 @@
-p {
-  margin: 5px;
-}
-
-.destination {
-  width: 180px;
-  height: 52px;
-  border-radius: 10px;
-}
-
-#trips-card-container {
+body {
+  width: 80vw;
+  height: 100vh;
   display: flex;
-}
-
-
-#trip-card {
-  border: 2px solid black;
-  width: 186px;
-  height: 250px;
-  display: flex;
+  flex-direction: column;
   align-items: flex-start;
+}
+
+h1 {
+  font-family: 'Yeseva One', cursive;
+  font-size: 50px;
+}
+
+h2 {
+  font-family: 'Yeseva One', cursive;
+  font-size: 40px;
+}
+
+h3 {
+  font-family: 'Yeseva One', cursive;
+  font-size: 30px;
+}
+
+h4 {
+  font-family: 'Yeseva One', cursive;
+  font-size: 26px;
+  margin-top: 4px;
+  margin-bottom: 5px;
+}
+
+h5 {
+  font-family: 'Yeseva One', cursive;
+  font-size: 20px;
+}
+
+p {
+  font-family: 'Poppins', Sans-Serif;
+  margin: 2px;
+}
+
+header {
+  width: 95vw;
+  display: flex;
+  justify-content: space-between;
+}
+
+main {
+  display: flex;
+}
+
+aside {
+  min-width: 394px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid #B8806E;
+  border-width: thin;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  padding-bottom: 30px;
+}
+
+form {
+  display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  align-items: center;
+  padding-right: 5px;
+}
+
+button{
+  min-width: 300px;
+  min-height: 30px;
+  margin-bottom: 3px;
+  border-radius: 10px;
+  color: white;
+  border-width: thin;
+  font-family: 'Poppins', Sans-Serif;
+  font-size: 20px;
+  background-color: #F3B305;
+}
+
+label {
+  margin-top: 30px;
+  font-size: 20px;
+  font-family: 'Poppins', Sans-Serif;
+  font-size: 20px;
+}
+
+input {
+  min-width: 295px;
+  margin-bottom: 5px;
+  min-height: 30px;
+  color: black;
+  background-color: white;
+  border-width: thin;
+  font-family: 'Poppins', Sans-Serif;
+  font-size: 20px;
+}
+
+select {
+  width: 300px;
+  margin-bottom: 5px;
+  min-height: 30px;
+  font-family: 'Poppins', Sans-Serif;
+  background-color: white;
+  color: black;
+  font-size: 20px;
+}
+
+article {
+  border: 2px solid #B8806E;
+  border-width: thin;
+  border-radius: 10px;
+  width: 250px;
+  height: 360px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
   font-size: 12px;
+  margin-right: 3px;
+  flex: 0 0 auto;
+}
+
+#login {
+  margin-left: 50%;
+}
+
+#login-form {
+  align-items: center;
+}
+
+#travel-img {
+  height: 300px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+#travel-request-navigation {
+  min-width: 395px;
+  display: flex;
+  flex-direction: column;
+  margin-right: 15px;
+  align-items: center;
+}
+
+#travel-request-messages {
+  font-size: 18px;
+}
+
+#travel-request-messages {
+  min-height: 60px;
+}
+
+#pic-wrapper {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: center
+}
+
+
+.destination {
+  max-width: 180px;
+  max-height: 117px;
+  border-radius: 10px;
+  margin-bottom: 2px;
+}
+
+#sort-travel-button{
+  margin-right: 15px;
+}
+
+#trips-button-container{
+  width: 80vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+#main-trip-card {
+  width: 380px;
+  height: 465px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-size: 20px;
+}
+
+#main-destination {
+  max-width: 280px;
+  max-height: 217px;
+  border-radius: 10px;
+  margin-bottom: 2px;
 }
 
 #upcoming-trips {
   display: flex;
+  flex-wrap: nowrap;
+  max-width: 80vw;
+  overflow: scroll;
 }
 
 #pending-trips {
   display: flex;
+  flex-wrap: nowrap;
+  max-width: 80vw;
+  overflow: scroll;
 }
 
 #past-trips {
   display: flex;
+  flex-wrap: nowrap;
+  max-width: 80vw;
+  overflow: scroll;
 }
 
 .hidden {
