@@ -79,6 +79,6 @@ describe('Traveler', () => {
     traveler1.getTravelerTrips(testData.trips);
     traveler1.getTravelerDestinations(testData.destinations);
 
-    expect(traveler1.calculateTotalSpendForCurrentYear()).to.equal(3520)
+    expect(traveler1.calculateTotalSpendForCurrentYear()).to.equal('3520.00')
   })
 });
