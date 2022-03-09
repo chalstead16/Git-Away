@@ -28,8 +28,8 @@ let domUpdates = {
         <p>Date: ${trip.date}</p>
         <p>Duration: ${trip.duration} day(s)</p>
         <p>Total Traveler(s): ${trip.travelers}</p>
-        <p>Lodging: $${trip.destination.estimatedLodgingCostPerDay}</p>
-        <p>Flight: $${trip.destination.estimatedFlightCostPerPerson}</p>
+        <p>Lodging: $${trip.destination.estimatedLodgingCostPerDay}.00</p>
+        <p>Flight: $${trip.destination.estimatedFlightCostPerPerson}.00</p>
         <p>Status: ${trip.status}</p>
       </article>
       `;
@@ -50,8 +50,8 @@ let domUpdates = {
         <p>Date: ${trip.date}</p>
         <p>Duration: ${trip.duration} day(s)</p>
         <p>Total Traveler(s): ${trip.travelers}</p>
-        <p>Lodging: $${trip.destination.estimatedLodgingCostPerDay}</p>
-        <p>Flight: $${trip.destination.estimatedFlightCostPerPerson}</p>
+        <p>Lodging: $${trip.destination.estimatedLodgingCostPerDay}.00</p>
+        <p>Flight: $${trip.destination.estimatedFlightCostPerPerson}.00</p>
         <p>Status: ${trip.status}</p>
       </article>
       `;
@@ -72,8 +72,8 @@ let domUpdates = {
         <p>Date: ${trip.date}</p>
         <p>Duration: ${trip.duration} day(s)</p>
         <p>Total Traveler(s): ${trip.travelers}</p>
-        <p>Lodging: $${trip.destination.estimatedLodgingCostPerDay}</p>
-        <p>Flight: $${trip.destination.estimatedFlightCostPerPerson}</p>
+        <p>Lodging: $${trip.destination.estimatedLodgingCostPerDay}.00</p>
+        <p>Flight: $${trip.destination.estimatedFlightCostPerPerson}.00</p>
         <p>Status: ${trip.status}</p>
       </article>
       `;
